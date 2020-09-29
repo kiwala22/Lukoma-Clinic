@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lukoma - Clinic | <%= yield(:title) %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+   <!-- =============== APP STYLES ===============-->
+   <%= stylesheet_link_tag 'application', media: 'all', id: "maincss" %>
+
+   <%= yield :vendor_css_area %>
+
+   <%= csrf_meta_tags %>
+   <%= csp_meta_tag %>
+  </head>
+
+  <body>
+     <div class="wrapper">
+        <!-- top navbar-->
+        <header class="topnavbar-wrapper">
+           <%= render partial: "layouts/partials/topnavbar" %>
+        </header>
+        <!-- sidebar-->
+        <aside class="aside-container">
+           <%= render partial: "layouts/partials/sidebar" %>
+        </aside>
+        <!-- Main section-->
+        <section class="section-container">
+           <!-- Page content-->
+           <div class="content-wrapper">
+              <%= render partial: "layouts/partials/flash" %>
+              <%= yield %>
+           </div>
+        </section>
+        <!-- Page footer-->
+        <footer class="footer-container">
+           <%= render partial: "layouts/partials/footer" %>
+        </footer>
+     </div>
+
+     <!-- =============== APP SCRIPTS ===============-->
+     <%= javascript_packs_with_chunks_tag 'application' %>
+
+     <%= yield :vendor_js_area %>
+
+     <%= yield :body_area %>
+
+  </body>
+
+</html>

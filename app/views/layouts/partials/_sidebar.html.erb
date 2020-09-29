@@ -1,0 +1,37 @@
+<!-- START Sidebar (left)-->
+<div class="aside-inner">
+   <nav class="sidebar" data-sidebar-anyclick-close="">
+      <!-- START sidebar nav-->
+      <ul class="sidebar-nav">
+         <!-- Iterates over all sidebar items-->
+         <li class="<%= 'active' if controller.controller_name == 'home' %>">
+            <a href="/" title="Dashboard">
+               <em class="far fa-hospital"></em>
+               <span data-localize="sidebar.nav.DASHBOARD">Dashboard</span>
+            </a>
+         </li>
+
+         <li class="">
+            <a href="#patients" title="Patients" data-toggle="collapse">
+               <em class="fas fa-prescription"></em>
+               <span data-localize="sidebar.nav.DASHBOARD">Patients</span>
+            </a>
+            <ul id="patients" class="sidebar-nav sidebar-subnav collapse">
+               <li class="sidebar-subnav-header">Patients</li>
+               <li class="<%= 'active' if controller.controller_name == 'patients' && controller.action_name == 'index' %>">
+                  <a href="<%= patients_path %>" title="Patients Info">
+                     <span>Patients Info</span>
+                  </a>
+               </li>
+               <li class="<%= 'active' if controller.controller_name == 'patients' && controller.action_name == 'new' %>">
+                  <a href="<%= new_patient_path %>" title="New Patient">
+                     <span>New Patient</span>
+                  </a>
+               </li>
+            </ul>
+         </li>
+      </ul>
+      <!-- END sidebar nav-->
+   </nav>
+</div>
+<!-- END Sidebar (left)-->

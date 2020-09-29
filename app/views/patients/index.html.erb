@@ -1,0 +1,53 @@
+<div class="content-heading">
+   <div>Patients Info
+      <small>Patient Information</small>
+   </div>
+</div>
+<div class="container-fluid">
+   <!-- DATATABLE DEMO 1-->
+   <div class="card">
+      <div class="card-header">
+         <div class="card-title">Zero configuration</div>
+         <div class="text-sm">DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: $().DataTable();.</div>
+      </div>
+      <div class="card-body">
+         <div id="datatable1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                <table class="table table-striped my-4 w-100 dataTable no-footer dtr-inline table-responsive" id="datatable1" role="grid" aria-describedby="datatable1_info">
+                <thead>
+                    <tr>
+                      <th data-priority="1">Patient ID#</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th class="sort-numeric">Sex</th>
+                      <th class="sort-alpha" data-priority="2">Address</th>
+                      <th>Patient history</th>
+                      <th>Diagnosis</th>
+                      <th>Results</th>
+                      <th>Conclusion</th>
+                      <th>Doctor</th>
+                      <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% @patients.each do |patient| %>
+                    <tr class="gradeX">
+                      <td><a href=<%=patient_path(id: patient.id)%>><%= patient.patient_id %></a></td>
+                      <td><%= patient.first_name %></td>
+                      <td><%= patient.last_name %></td>
+                      <td><%= patient.sex %></td>
+                      <td><%= patient.address %></td>
+                      <td><%= patient.patient_history %></td>
+                      <td><%= patient.diagnosis %></td>
+                      <td><%= patient.results %></td>
+                      <td><%= patient.conclusion %></td>
+                      <td><%= patient.doctor.titleize %></td>
+                      <td><%= link_to 'Update', edit_patient_path(patient) %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+              <%= paginate(@patients) %>
+         </div>
+      </div>
+   </div>
+</div>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="description" content="Bootstrap Admin App + Ruby on Rails">
+   <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+   <title>Lukoma - Clinic | <%= yield(:title) %></title>
+
+   <!-- =============== APP STYLES ===============-->
+   <%= stylesheet_link_tag 'application', media: 'all', id: "maincss" %>
+   <!-- =============== VIEW STYLES ===============-->
+   <%= yield :vendor_css_area %>
+   <%= csrf_meta_tags %>
+   <%= csp_meta_tag %>
+</head>
+
+<body>
+   <div class="wrapper">
+      <!-- top navbar-->
+      <header class="topnavbar-wrapper">
+         <%= render partial: "layouts/devise_partials/topnavbar" %>
+      </header>
+      <div>
+         <%= render partial: "layouts/partials/flash" %>
+         <%= yield %>
+      </div>
+      <br>
+      <div class="p-lg text-center">
+         <span>&copy;</span>
+         <span>2020</span>
+         <span>-</span>
+         <span>Lukoma</span>
+         <br>
+         <span>Clinic</span>
+      </div>
+   </div>
+
+   <!-- =============== APP SCRIPTS ===============-->
+   <%= javascript_packs_with_chunks_tag 'application' %>
+   <%= yield :vendor_js_area %>
+
+   <%= yield :body_area %>
+
+</body>
+
+</html>
