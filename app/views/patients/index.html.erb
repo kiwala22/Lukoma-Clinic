@@ -7,8 +7,7 @@
    <!-- DATATABLE DEMO 1-->
    <div class="card">
       <div class="card-header">
-         <div class="card-title">Zero configuration</div>
-         <div class="text-sm">DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: $().DataTable();.</div>
+         <div class="card-title">Patients</div>
       </div>
       <div class="card-body">
          <div id="datatable1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -18,12 +17,12 @@
                       <th data-priority="1">Patient ID#</th>
                       <th>First Name</th>
                       <th>Last Name</th>
-                      <th class="sort-numeric">Sex</th>
-                      <th class="sort-alpha" data-priority="2">Address</th>
-                      <th>Patient history</th>
-                      <th>Diagnosis</th>
-                      <th>Results</th>
-                      <th>Conclusion</th>
+                      <th>Sex</th>
+                      <th>D.O.B</th>
+                      <th>Height</th>
+                      <th>Weight</th>
+                      <th>Address</th>
+                      <th>Phone Number</th>
                       <th>Doctor</th>
                       <th>Actions</th>
                     </tr>
@@ -35,11 +34,11 @@
                       <td><%= patient.first_name %></td>
                       <td><%= patient.last_name %></td>
                       <td><%= patient.sex %></td>
+                      <td><%= patient.date_of_birth %></td>
+                      <td><%= patient.height %></td>
+                      <td><%= patient.weight %></td>
                       <td><%= patient.address %></td>
-                      <td><%= patient.patient_history %></td>
-                      <td><%= patient.diagnosis %></td>
-                      <td><%= patient.results %></td>
-                      <td><%= patient.conclusion %></td>
+                      <td><%= patient.phone_number %></td>
                       <td><%= patient.doctor.titleize %></td>
                       <td><%= link_to 'Update', edit_patient_path(patient) %></td>
                     </tr>

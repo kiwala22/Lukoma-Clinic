@@ -1,15 +1,7 @@
-<div class="content-heading">
-  <div>Patient <%= @patient.patient_id %> Records
-  <small>Patient Information</small>
-  </div>
-  <button class="btn btn-primary ml-auto" type="button">
-      <em class="fa fa-plus-circle fa-fw mr-1"></em>New Patient</button>
-</div>
-
 <div class="card col-md-8 block-center">
   <div class="card-body">
     <div class="d-flex align-items-center">
-      <h3 class="m-0">Patient Report</h3>
+    <%= image_tag wicked_pdf_asset_base64('company_logo.png'), height: "30vw",class: "img-responsive" %>
     </div>
     <hr/>
     <div class="row mb-3">
@@ -24,29 +16,27 @@
         </div>
       </div>
     </div>
+    <h2>Patient Medical Record</h2>
+    <hr/>
     <div class="row mb-3">
-         <div class="col-xl-6 col-6 py-2">
-            <div class="row">
-               <div class="col-lg-10">
-                  <h4><%= @patient.first_name %>, <%= @patient.last_name %></h4>
-                  <p><%= @patient.patient_id %></p>
-                  <p><%= @patient.sex %></p>
-                  <p><%= "29-01-1996" %></p>
-                  <address></address><%= @patient.address %>
-                </div>
-            </div>
-         </div>
-         <div class="col-xl-6 col-12 py-2">
-            <div class="clearfix">
-                <p class="float-left">REPORT NO.</p>
-                <p class="float-right mr-2">00004879</p>
-            </div>
-            <div class="clearfix">
-                <p class="float-left">Date</p>
-                <p class="float-right mr-2"><%= @patient.created_at.to_datetime.strftime("%b %d, %Y") %></p>
-            </div>
-        </div>
+        <table class="col-xl-12 col-12 py-2">
+          <tr class="row col-lg-12">
+            <td class="col-lg-6">
+              <h5><%= @patient.first_name %>, <%= @patient.last_name %></h5>
+              <p><%= @patient.patient_id %></p>
+              <p><%= @patient.sex %></p>
+              <address></address><%= @patient.address %>
+            </td>
+            <td class="col-lg-6">
+              <p><%= @patient.date_of_birth %></p>
+              <p><%= @patient.weight %> KGs</p>
+              <p><%= @patient.height %> CMs</p>
+              <p><%= @patient.phone_number %></p>
+            </td>
+          </tr>
+        </table>
     </div>
+    <hr/>
     <div class="container-fluid mt-2">
       <div class="">
         <div>
@@ -61,6 +51,14 @@
           <h4>Results</h4>
           <p>
             <%= @patient.results %>
+          </p>
+        </div>
+      </div>
+      <div class="">
+        <div>
+          <h4>Prescription</h4>
+          <p>
+            <%= @patient.prescription %>
           </p>
         </div>
       </div>
@@ -90,10 +88,6 @@
               </div>
           </div>
       </div>
-    </div>
-    <hr class="d-print-none" />
-    <div class="clearfix">
-         <button class="btn btn-success float-right" type="button" onclick="window.print();">Print Report</button>
     </div>
   </div>
 </div>

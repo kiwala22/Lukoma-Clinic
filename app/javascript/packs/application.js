@@ -10,6 +10,13 @@ require("modernizr/modernizr.custom.js");
 // require("@rails/activestorage").start()
 // require("channels")
 
+import './datepicker'
+
+$(document).ready(function() {
+    $("#birth_date").datetimepicker({
+        format: "YYYY-MM-DD"
+    });
+});
 //--- Bootstrap
 import 'bootstrap';
 
