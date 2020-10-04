@@ -3,6 +3,43 @@
       <small>Patient Information</small>
    </div>
 </div>
+
+<div class="card card-default">
+   <%= search_form_for @q, url: patients_path, html: { method: :get } do |f| %>
+   <div class="card-body">
+      <fieldset>
+         <div class="form-row">
+            <div class="col-sm-6 col-md-6">
+               <div class="form-group">
+                  <%= f.label :patient_id_eq, "Patient ID", class:"col-md-4 col-form-label" %>
+                  <div class="col-lg-8">
+                     <%= f.search_field :patient_id_eq, {include_blank: true, id: "patient_id", class: "form-control"} %>
+                  </div>
+               </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+               <div class="form-group">
+                  <%= f.label :phone_number, "Phone Number", class:"col-md-4 col-form-label" %>
+                  <div class="col-lg-8">
+                     <%= f.search_field :phone_number_eq, {include_blank: true, id: "phone_number", class: "form-control"} %>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </fieldset>
+      <div class="card-footer">
+         <div class="clearfix">
+            <div class="float-right">
+               <%= f.submit 'Search', :class=>'btn btn-primary' %>
+            </div>
+         </div>
+      </div>
+   </div>
+   <% end %>
+</div>
+
+
+
 <div class="container-fluid">
    <!-- DATATABLE DEMO 1-->
    <div class="card">
@@ -40,7 +77,11 @@
                       <td><%= patient.address %></td>
                       <td><%= patient.phone_number %></td>
                       <td><%= patient.doctor.titleize %></td>
-                      <td><%= link_to 'Update', edit_patient_path(patient) %></td>
+                      <td>
+                        <% if can? :update, patient %>
+                           <%= link_to 'Update', edit_patient_path(patient) %>
+                        <% end %>
+                      </td>
                     </tr>
                 <% end %>
                 </tbody>

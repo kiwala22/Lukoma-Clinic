@@ -2,9 +2,11 @@ class PatientsController < ApplicationController
   before_action :authenticate_doctor!
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
   layout :resolve_layout
+  load_and_authorize_resource
 
   def index
-    @patients = Patient.all.order("created_at DESC").page params[:page]
+    @q = Patient.ransack(params[:q])
+    @patients = @q.result.order("created_at DESC").page params[:page]
   end
 
   def new
@@ -16,24 +18,6 @@ class PatientsController < ApplicationController
       patient_id: "LUK-"+generate_patient_id(),
       doctor: current_doctor.username
     ))
-    # @patient = Patient.new(
-    #   patient_id: "LUK-"+generate_patient_id(),
-    #   first_name: patient_params[:first_name],
-    #   last_name: patient_params[:last_name],
-    #   sex: patient_params[:sex],
-    #   date_of_birth: patient_params[:date_of_birth],
-    #   prescription: patient_params[:prescription],
-    #   height: patient_params[:height],
-    #   weight: patient_params[:weight],
-    #   address: patient_params[:address],
-    #   patient_history: patient_params[:patient_history],
-    #   diagnosis: patient_params[:diagnosis],
-    #   results: patient_params[:results],
-    #   conclusion: patient_params[:conclusion],
-    #   doctor: current_doctor.username,
-    #   phone_number: patient_params[:phone_number]
-    # )
-
     if @patient.save
       flash[:notice] = "Patient records successfully saved."
       redirect_to action: "index"
