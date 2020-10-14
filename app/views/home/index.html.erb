@@ -13,21 +13,44 @@
    <!-- END Language list-->
 </div>
 
-<div class="row">
-   <div class="col-sm-12">
-      <div class="col-sm-12 col-centered">
-         <!-- START line chart-->
-         <div id="panelChart3" class="card mb3 border-info">
-            <div class="card-header bg-info">
-               <div class="card-title">Patients Analytics</div>
-            </div>
-            <div collapse="panelChart3" class="panel-wrapper">
-               <div class="card-body" >
-                  <div id="patients_graph" style=" min-height: 400px; width: 100%; "></div>
+
+<div class="container-fluid">
+   <div class="row">
+      <div class="col-sm-4 col-centered">
+         <div class="card mb-3">
+            <div class="card-body">
+               <div class="text-center">
+                  <h3 class="mt0"><%=current_doctor.role.titleize%>. <%= current_doctor.username.titleize %></h3>
+                  <p>Lukoma Clinic Limited</p>
                </div>
+               <hr/>
+               <ul class="listing">
+               <li>
+                  <em class="far fa-envelope fa-fw mr-lg"></em>
+                  <%= current_doctor.email %>
+               </li>
+               </ul>
             </div>
          </div>
-         <!-- END line chart-->
       </div>
+   </div>
+   
+   <div class="row">
+      <!-- <div class="col-sm-12"> -->
+         <div class="col-sm-12 col-centered">
+            <!-- START line chart-->
+            <div id="panelChart3" class="card mb3 border-info">
+               <div class="card-header bg-info">
+                  <div class="card-title">Patients Analytics</div>
+               </div>
+               <div collapse="panelChart3" class="panel-wrapper">
+                  <div class="card-body" >
+                     <div id="patients_graph" style=" min-height: 400px; width: 100%; "></div>
+                  </div>
+               </div>
+            </div>
+            <!-- END line chart-->
+         </div>
+      <!-- </div> -->
    </div>
 </div>

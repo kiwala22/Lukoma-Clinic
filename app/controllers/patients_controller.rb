@@ -22,7 +22,6 @@ class PatientsController < ApplicationController
       flash[:notice] = "Patient records successfully saved."
       redirect_to action: "index"
     else
-      flash.now[:alert] = @patient.errors
       render action: "new"
     end
   end

@@ -1,7 +1,7 @@
 import * as echarts from 'echarts';
 
-$(document).ready(function() {
-  var myChart = echarts.init(document.getElementById('patients_graph'), 'walden');
+$(document).ready(() => {
+  try{var myChart = echarts.init(document.getElementById('patients_graph'), 'walden');}catch(e){};
   var itemStyle = {
       normal: {
       },
@@ -52,5 +52,5 @@ $(document).ready(function() {
           }
       ]
   };
-  myChart.setOption(option);
+  try{myChart.setOption(option);}catch(e){};
 });

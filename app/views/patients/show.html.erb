@@ -16,18 +16,19 @@
         </div>
       </div>
     </div>
+
     <h2>Patient Medical Record</h2>
     <hr/>
     <div class="row mb-3">
-        <table class="col-xl-12 col-12 py-2">
-          <tr class="row col-lg-12">
-            <td class="col-lg-6">
-              <h5><%= @patient.first_name %>, <%= @patient.last_name %></h5>
+        <table class="col-xl-12 col-12 py-2" style="width: 100%;">
+          <tr class="form-row col-lg-12">
+            <td class="col">
+              <h4><%= @patient.first_name %>, <%= @patient.last_name %></h4>
               <p><%= @patient.patient_id %></p>
               <p><%= @patient.sex %></p>
               <address></address><%= @patient.address %>
             </td>
-            <td class="col-lg-6">
+            <td class="col">
               <p><%= @patient.date_of_birth %></p>
               <p><%= @patient.weight %> KGs</p>
               <p><%= @patient.height %> CMs</p>
@@ -61,6 +62,21 @@
             <%= @patient.prescription %>
           </p>
         </div>
+        <h4>Additional Prescription</h4>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Prescription</th>
+              <th>Additional Comments</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="width: 40%; height: 200px;"></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div class="">
         <div>
