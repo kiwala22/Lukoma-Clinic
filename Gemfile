@@ -62,3 +62,12 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'gon'
+
+group :development do
+  gem "capistrano", "~> 3.14", require: false
+    gem 'capistrano-bundler'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano-yarn'
+end
