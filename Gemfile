@@ -69,5 +69,7 @@ group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
-  gem 'capistrano-yarn'
+  gem 'capistrano-yarn' 
+  gem 'capistrano-database-yml'
+   gem 'capistrano-secrets-yml'
 end
