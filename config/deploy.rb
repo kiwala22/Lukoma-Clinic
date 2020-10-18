@@ -10,9 +10,9 @@ set :repo_url, "git@bitbucket.org:kiwala22/lukoma-clinic.git"
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/www/lukoma-clinic"
 
-set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
+# set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
+# set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
 set :passenger_restart_with__touch, true
 
@@ -33,10 +33,11 @@ set :rvm_ruby_version, '2.7.0'
 # set :pty, true
 
 # Default value for :linked_files is []
-# append :linked_files, "config/database.yml"
+ append :linked_files, "config/database.yml"
+ append :linked_files, "config/secrets.yml"
 
 # Default value for linked_dirs is []
-# append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
 
 # Default value for local_user is ENV['USER']
