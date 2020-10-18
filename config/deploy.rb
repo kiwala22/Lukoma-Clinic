@@ -18,7 +18,7 @@ set :passenger_restart_with__touch, true
 
 set :rvm_type, :system
 set :rvm_ruby_version, '2.7.0'
-set :rvm_custom_path, "/home/ivan/.rvm" 
+# set :rvm_custom_path, "/home/ivan/.rvm" 
 
 
 
@@ -27,7 +27,7 @@ set :rvm_custom_path, "/home/ivan/.rvm"
 
 # You can configure the Airbrussh format using :format_options.
 # These are the defaults.
-# set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
+ set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
 
 # Default value for :pty is false
 # set :pty, true
