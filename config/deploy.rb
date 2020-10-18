@@ -1,14 +1,14 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.14.1"
 
-set :application, "Lukoma-clinic"
+set :application, "lukoma-clinic"
 set :repo_url, "git@bitbucket.org:kiwala22/lukoma-clinic.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-#set :deploy_to, "/var/www/"
+set :deploy_to, "/var/www/lukoma-clinic"
 
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 
