@@ -70,6 +70,6 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
   gem 'capistrano-yarn' 
-  gem 'capistrano-database-yml'
-   gem 'capistrano-secrets-yml'
+  # gem 'capistrano-database-yml'
+   # gem 'capistrano-secrets-yml'
 end
