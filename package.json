@@ -6,8 +6,8 @@
     "license": "https://wrapbootstrap.com/help/licenses",
     "private": true,
     "scripts": {
-        "modernizr": "modernizr -c modernizr-config.json -d node_modules/modernizr/modernizr.custom.js",
-        "postinstall": "npm run modernizr"
+        // "modernizr": "modernizr -c modernizr-config.json -d node_modules/modernizr/modernizr.custom.js",
+        // "postinstall": "npm run modernizr"
     },
     "dependencies": {
         "@activeadmin/activeadmin": "^2.8.1",
