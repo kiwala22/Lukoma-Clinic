@@ -13,6 +13,10 @@ set :branch, "master"
 
 server "161.35.173.43", user: "deploy", roles: %w{app db web}
 
+set :pg_database, 'lukoma_clinic_production'
+set :pg_encoding, 'UTF-8'
+set :pg_pool, '100'
+
 
 
 # role-based syntax
