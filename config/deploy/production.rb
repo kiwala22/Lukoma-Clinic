@@ -17,7 +17,7 @@ set :pg_database, 'lukoma_clinic_production'
 set :pg_encoding, 'UTF-8'
 set :pg_pool, '100'
 
-set :default_env, { 'PASSENGER_INSTANCE_REGISTRY_DIR' => '/home/root/passenger_temp' }
+# set :default_env, { 'PASSENGER_INSTANCE_REGISTRY_DIR' => '/home/root/passenger_temp' }
 
 
 
