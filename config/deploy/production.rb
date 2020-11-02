@@ -13,9 +13,9 @@ set :branch, "master"
 
 server "161.35.173.43", user: "deploy", roles: %w{app db web}
 
-set :pg_database, 'lukoma_clinic_production'
-set :pg_encoding, 'UTF-8'
-set :pg_pool, '100'
+# set :pg_database, 'lukoma_clinic_production'
+# set :pg_encoding, 'UTF-8'
+# set :pg_pool, '100'
 
 # set :default_env, { 'PASSENGER_INSTANCE_REGISTRY_DIR' => '/home/root/passenger_temp' }
 
