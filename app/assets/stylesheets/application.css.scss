@@ -46,3 +46,18 @@
    margin-top: 10px !important;
    padding-top: 5px !important;
 }
+
+.pdf-table {
+  border: 1px solid black !important;
+  width: 100% !important;
+  height: 290px !important;
+  border-collapse: collapse !important;
+}
+
+.pdf-tr {
+  height: 37px !important;
+}
+
+.pdf-td {
+  border: 1px solid black !important;
+}
