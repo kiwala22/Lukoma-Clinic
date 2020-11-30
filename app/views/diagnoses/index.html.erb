@@ -1,0 +1,67 @@
+<div class="content-heading">
+   <div>Patients Diagnosis
+      <small>Patient Information</small>
+   </div>
+</div>
+
+
+<div class="row">
+   <div class="col-md-12">
+      <div class="card card-default">
+         <%= search_form_for @q, url: diagnoses_path, html: { method: :get } do |f| %>
+         <div class="card-body">
+            <fieldset>
+               <div class="form-row">
+                  <div class="col-md-8">
+                     <div class="form-group form-row">
+                        <%= f.label :patient_number_eq, "Patient Number", class:"col-md-2 col-form-label" %>
+                        <div class="col-lg-8">
+                           <%= f.search_field :patient_number_eq, {include_blank: true, id: "patient_number", class: "form-control"} %>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </fieldset>
+            <div class="clearfix">
+               <div class="float-right">
+                  <%= f.submit 'Search', :class=>'btn btn-primary' %>
+               </div>
+            </div>
+         </div>
+         <% end %>
+      </div>
+   </div>
+</div>
+
+
+<div class="container-fluid">
+   <div class="card">
+      <div class="card-header">
+         <div class="card-title">Patients Diagnoses</div>
+      </div>
+      <div class="card-body table-responsive">
+            <table class="table table-striped">
+               <thead>
+                  <tr>
+                     <th>Patient Number#</th>
+                     <th>Diagnosis</th>
+                  </tr>
+               </thead>
+               <tbody>
+               <% @diagnoses.each do |diagnosis| %>
+                  <tr>
+                     <td><%= diagnosis.patient_number %></td>
+                     <td>
+                       <ol>
+                         <% diagnosis.diagnosis.each do |key, value| %>
+                          <li><%= value %></li>
+                         <% end %>
+                       </ol>
+                     </td>
+                  </tr>
+               <% end %>
+               </tbody>
+         </table>
+      </div>
+   </div>
+</div>

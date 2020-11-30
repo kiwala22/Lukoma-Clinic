@@ -30,6 +30,26 @@
                </li>
             </ul>
          </li>
+
+         <li class="">
+            <a href="#diagnoses" title="Diagnoses" data-toggle="collapse">
+               <em class="fas fa-prescription"></em>
+               <span data-localize="sidebar.nav.DASHBOARD">Diagnosis</span>
+            </a>
+            <ul id="diagnoses" class="sidebar-nav sidebar-subnav collapse">
+               <li class="sidebar-subnav-header">Diagnosis</li>
+               <li class="<%= 'active' if controller.controller_name == 'diagnoses' && controller.action_name == 'index' %>">
+                  <a href="<%= diagnoses_path %>" title="Patients Diagnosis">
+                     <span>Patients Diagnosis</span>
+                  </a>
+               </li>
+               <li class="<%= 'active' if controller.controller_name == 'diagnoses' && controller.action_name == 'new' %>">
+                  <a href="<%= new_diagnosis_path %>" title="New Patient">
+                     <span>New Patient Diagnosis</span>
+                  </a>
+               </li>
+            </ul>
+         </li>
       </ul>
       <!-- END sidebar nav-->
    </nav>

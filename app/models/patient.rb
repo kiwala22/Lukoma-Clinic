@@ -9,4 +9,7 @@ class Patient < ApplicationRecord
     validates :weight, presence: {message: "Weight is required."}
     validates :height, numericality: {message: "Height must be a number."}
     validates :weight, numericality: {message: "Weight must be a number."}
+
+
+    has_many :diagnoses
 end

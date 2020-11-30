@@ -42,16 +42,18 @@
       <div class="">
         <div>
           <h4>Diagnosis</h4>
-          <p>
-            <%= @patient.diagnosis %>
-          </p>
+            <ol>
+              <% @patient.diagnoses.last.diagnosis.each do |key, value| %>
+                <li><%= value %></li>
+              <% end %>
+            </ol>
         </div>
       </div>
       <div class="">
         <div>
           <h4>Results</h4>
           <p>
-            <%= @patient.results %>
+
           </p>
         </div>
       </div>
@@ -59,7 +61,7 @@
         <div>
           <h4>Prescription</h4>
           <p>
-            <%= @patient.prescription %>
+
           </p>
         </div>
         <h4>Additional Prescription</h4>
@@ -83,7 +85,7 @@
         <div>
           <h4>Conclusion</h4>
           <p>
-            <%= @patient.conclusion %>
+
           </p>
         </div>
       </div>

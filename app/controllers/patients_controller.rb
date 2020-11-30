@@ -1,6 +1,6 @@
 class PatientsController < ApplicationController
   before_action :authenticate_doctor!
-  before_action :set_patient, only: [:show, :edit, :update, :destroy]
+  before_action :set_patient, only: [:show, :destroy]
   layout :resolve_layout
   load_and_authorize_resource
 
@@ -44,17 +44,17 @@ class PatientsController < ApplicationController
   end
   end
 
-  def edit
-  end
-
-  def update
-    if @patient.update(patient_params)
-      flash[:notice] = "Patient info updated successfully"
-      redirect_to action: "index"
-    else
-      render action: "edit"
-    end
-  end
+  # def edit
+  # end
+  #
+  # def update
+  #   if @patient.update(patient_params)
+  #     flash[:notice] = "Patient info updated successfully"
+  #     redirect_to action: "index"
+  #   else
+  #     render action: "edit"
+  #   end
+  # end
 
   def destroy
   end
@@ -82,8 +82,7 @@ class PatientsController < ApplicationController
   end
 
   def patient_params
-    params.require(:patient).permit(:first_name, :last_name, :sex, :address, :patient_history, :diagnosis,
-     :results, :conclusion, :date_of_birth, :prescription, :height, :weight, :phone_number)
+    params.require(:patient).permit(:first_name, :middle_name, :last_name, :sex, :address, :patient_medical_history, :date_of_birth, :height, :weight, :phone_number)
   end
 
 end
