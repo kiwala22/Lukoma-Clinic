@@ -32,3 +32,8 @@ class DiagnosesController < ApplicationController
   end
 
 end
+
+
+str = {"value1": 3, "value1": 5, "value1": 7}
+
+number = str.count

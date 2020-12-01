@@ -2,6 +2,9 @@
    <div>New Patient Diagnosis
       <small>Patient Information</small>
    </div>
+   <script type="text/javascript">
+        var value_index = 1;
+    </script>
 </div>
 
 <div class="row">
@@ -18,9 +21,10 @@
         <div class="form-group">
           <%= form.label :diagnosis, "Diagnosis", class: "text-muted" %>
           <%= form.fields :diagnosis do |f| %>
-            <%= f.text_area :value1, class: "form-control" %>
-            <br>
-            <%= f.text_area :value2, class: "form-control" %>
+            <div class="" id="my_fields">
+              <%= f.text_area :"value#{0}", class: "form-control" %>
+              <br>
+            </div>
           <% end %>
         </div>
         <div class="form-group"></div>
@@ -28,6 +32,9 @@
           <%= form.submit 'Submit', :class=>'btn btn-info mb-2' %>
         </div>
       <% end %>
+      <div class="clearfix">
+        <button id="js-add-question-row" class="btn btn-primary fileinput-button float-right"><i class="fa fa-fw fa-plus"></i><%= "Add Field" %></button>
+      </div>
       </div>
     </div>
   </div>
