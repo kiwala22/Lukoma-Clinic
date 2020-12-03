@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :billings
+  resources :conclusions
+  resources :prescriptions
+  resources :results
   resources :diagnoses
   resources :patients
   root to: 'home#index'

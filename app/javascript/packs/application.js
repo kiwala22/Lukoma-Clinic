@@ -18,19 +18,10 @@ $(document).ready(function() {
     });
 });
 
-//--- Dynamic fields
-$(function() {
+//--- Dynamic Fields For all forms ---//
+import "./dynamic_fields.js";
 
-    var template = "<textarea class='form-control' name='diagnosis[diagnosis][valueINDEX]'></textarea> <br>",
-        index = $('textarea').length,
-        compiled_template;
 
-    $('#js-add-question-row').click(function() {
-        var compiled_textarea = $(template.replace("INDEX", index));
-        $('#my_fields').append(compiled_textarea);
-        index = index + 1;
-    });
-});
 //--- Bootstrap
 import 'bootstrap';
 

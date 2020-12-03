@@ -1,5 +1,5 @@
 <div class="content-heading">
-   <div>New Patient Diagnosis
+   <div>New Patient Results
       <small>Patient Information</small>
    </div>
 </div>
@@ -8,16 +8,16 @@
   <div class="block-center mt-xl wd-xxl col-sm-8 col-centered">
     <div class="card card-dark card-flat">
       <div class="card-body">
-      <%= form_with(model: @diagnosis, local: true, :html => {:"data-parsley-validate" => '', class: "mb-lg"}) do |form| %>
+      <%= form_with(model: @result, local: true, :html => {:"data-parsley-validate" => '', class: "mb-lg"}) do |form| %>
         <div class="form-group">
           <%= form.label :patient_number, "Patient Number", class: "text-muted" %>
           <%= form.select :patient_number, options_for_select(Patient.pluck(:patient_id)), {:prompt => "Choose Patient Number...."}, class: "form-control" %>
-          <span class="invalid-feedback"><%= show_errors(@diagnosis, :patient_number) %></span>
+          <span class="invalid-feedback"><%= show_errors(@result, :patient_number) %></span>
         </div>
 
         <div class="form-group">
-          <%= form.label :diagnosis, "Diagnosis", class: "text-muted" %>
-          <%= form.fields :diagnosis do |f| %>
+          <%= form.label :results, "Results", class: "text-muted" %>
+          <%= form.fields :results do |f| %>
             <div class="" id="my_fields">
               <%= f.text_area :"value#{0}", class: "form-control", rows: 3, required: true %>
               <br>
@@ -30,7 +30,7 @@
         </div>
       <% end %>
       <div class="clearfix">
-        <button id="js-add-question-row" class="btn btn-primary fileinput-button float-right"><i class="fa fa-fw fa-plus"></i><%= "Add Field" %></button>
+        <button id="js-add-results-row" class="btn btn-primary fileinput-button float-right"><i class="fa fa-fw fa-plus"></i><%= "Add Field" %></button>
       </div>
       </div>
     </div>

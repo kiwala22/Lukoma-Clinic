@@ -18,7 +18,7 @@ class DiagnosesController < ApplicationController
       patient_id: patient_id
       ))
     if @diagnosis.save
-      flash[:notice] = "Patient records successfully saved."
+      flash[:notice] = "Patient Diagnosis records successfully saved."
       redirect_to action: "index"
     else
       render action: "new"
@@ -32,8 +32,3 @@ class DiagnosesController < ApplicationController
   end
 
 end
-
-
-str = {"value1": 3, "value1": 5, "value1": 7}
-
-number = str.count

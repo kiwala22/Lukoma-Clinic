@@ -13,7 +13,7 @@
 
          <li class="">
             <a href="#patients" title="Patients" data-toggle="collapse">
-               <em class="fas fa-prescription"></em>
+               <em class="fas fa-procedures"></em>
                <span data-localize="sidebar.nav.DASHBOARD">Patients</span>
             </a>
             <ul id="patients" class="sidebar-nav sidebar-subnav collapse">
@@ -33,7 +33,7 @@
 
          <li class="">
             <a href="#diagnoses" title="Diagnoses" data-toggle="collapse">
-               <em class="fas fa-prescription"></em>
+               <em class="fas fa-diagnoses"></em>
                <span data-localize="sidebar.nav.DASHBOARD">Diagnosis</span>
             </a>
             <ul id="diagnoses" class="sidebar-nav sidebar-subnav collapse">
@@ -44,8 +44,68 @@
                   </a>
                </li>
                <li class="<%= 'active' if controller.controller_name == 'diagnoses' && controller.action_name == 'new' %>">
-                  <a href="<%= new_diagnosis_path %>" title="New Patient">
+                  <a href="<%= new_diagnosis_path %>" title="New Diagnosis">
                      <span>New Patient Diagnosis</span>
+                  </a>
+               </li>
+            </ul>
+         </li>
+
+         <li class="">
+            <a href="#results" title="Results" data-toggle="collapse">
+               <em class="fas fa-prescription"></em>
+               <span data-localize="sidebar.nav.DASHBOARD">Results</span>
+            </a>
+            <ul id="results" class="sidebar-nav sidebar-subnav collapse">
+               <li class="sidebar-subnav-header">Results</li>
+               <li class="<%= 'active' if controller.controller_name == 'results' && controller.action_name == 'index' %>">
+                  <a href="<%= results_path %>" title="Patients Results">
+                     <span>Patients Results</span>
+                  </a>
+               </li>
+               <li class="<%= 'active' if controller.controller_name == 'results' && controller.action_name == 'new' %>">
+                  <a href="<%= new_result_path %>" title="New Result">
+                     <span>New Patient Result</span>
+                  </a>
+               </li>
+            </ul>
+         </li>
+
+         <li class="">
+            <a href="#prescriptions" title="Prescriptions" data-toggle="collapse">
+               <em class="fas fa-capsules"></em>
+               <span data-localize="sidebar.nav.DASHBOARD">Prescriptions</span>
+            </a>
+            <ul id="prescriptions" class="sidebar-nav sidebar-subnav collapse">
+               <li class="sidebar-subnav-header">Prescriptions</li>
+               <li class="<%= 'active' if controller.controller_name == 'prescriptions' && controller.action_name == 'index' %>">
+                  <a href="<%= prescriptions_path %>" title="Patients Prescriptions">
+                     <span>Patients Prescriptions</span>
+                  </a>
+               </li>
+               <li class="<%= 'active' if controller.controller_name == 'prescriptions' && controller.action_name == 'new' %>">
+                  <a href="<%= new_prescription_path %>" title="New Prescription">
+                     <span>New Patient Prescription</span>
+                  </a>
+               </li>
+            </ul>
+         </li>
+
+         <li class="">
+            <a href="#recommendations" title="Recommendations" data-toggle="collapse">
+               <em class="fas fa-briefcase-medical"></em>
+               <span data-localize="sidebar.nav.DASHBOARD">Recommendations</span>
+            </a>
+            <ul id="recommendations" class="sidebar-nav sidebar-subnav collapse">
+               <li class="sidebar-subnav-header">Recommendations</li>
+               <li class="<%= 'active' if controller.controller_name == 'conclusions' && controller.action_name == 'index' %>">
+                  <a href="<%= conclusions_path %>" title="Patients Recommendations">
+                     <span>Recommendations</span>
+                  </a>
+               </li>
+               <li class="<%= 'active' if controller.controller_name == 'conclusions' && controller.action_name == 'new' %>">
+                  <a href="<%= new_conclusion_path %>" title="New Recommendation">
+                     <span>New Recommendation</span>
                   </a>
                </li>
             </ul>

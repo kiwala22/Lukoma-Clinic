@@ -1,5 +1,5 @@
 <div class="content-heading">
-   <div>Patients Diagnosis
+   <div>Patients Prescriptions
       <small>Patient Information</small>
    </div>
 </div>
@@ -8,7 +8,7 @@
 <div class="row">
    <div class="col-md-12">
       <div class="card card-default">
-         <%= search_form_for @q, url: diagnoses_path, html: { method: :get } do |f| %>
+         <%= search_form_for @q, url: prescriptions_path, html: { method: :get } do |f| %>
          <div class="card-body">
             <fieldset>
                <div class="form-row">
@@ -33,24 +33,23 @@
    </div>
 </div>
 
-
 <div class="table-responsive">
       <table class="table table-striped table-bordered table-hoverlarge-12 columns large-centered">
          <thead>
             <tr>
               <th>No#</th>
                <th>Patient Number#</th>
-               <th>Diagnosis</th>
+               <th>Prescription</th>
             </tr>
          </thead>
          <tbody>
-         <% @diagnoses.each_with_index do |diagnosis, i| %>
+         <% @prescriptions.each_with_index do |prescription, i| %>
             <tr>
               <td><%= (i + 1) %></td>
-               <td><%= diagnosis.patient_number %></td>
+               <td><%= prescription.patient_number %></td>
                <td>
                  <ol>
-                   <% diagnosis.diagnosis.each do |key, value| %>
+                   <% prescription.prescription.each do |key, value| %>
                     <li><%= value %></li>
                    <% end %>
                  </ol>
@@ -59,5 +58,5 @@
          <% end %>
          </tbody>
    </table>
-   <%= paginate(@diagnoses) %>
+   <%= paginate(@prescriptions) %>
 </div>

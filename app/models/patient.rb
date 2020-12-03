@@ -12,4 +12,8 @@ class Patient < ApplicationRecord
 
 
     has_many :diagnoses
+    has_many :results
+    has_many :prescriptions
+    has_many :conclusions
+    has_many :billings
 end
