@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_102555) do
+ActiveRecord::Schema.define(version: 2020_12_03_110621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_102555) do
     t.decimal "height"
     t.decimal "weight"
     t.string "middle_name"
+    t.integer "age"
   end
 
   create_table "prescriptions", force: :cascade do |t|
