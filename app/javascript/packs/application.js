@@ -9,6 +9,7 @@ require("modernizr/modernizr.custom.js");
 // //require("turbolinks").start()
 // require("@rails/activestorage").start()
 // require("channels")
+//Added new info
 import "./patients_analytics.js.erb";
 import './datepicker'
 

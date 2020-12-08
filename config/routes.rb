@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :lab_patients
+  resources :lab_results
   resources :billings
   resources :conclusions
   resources :prescriptions

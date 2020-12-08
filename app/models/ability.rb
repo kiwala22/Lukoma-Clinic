@@ -8,6 +8,7 @@ class Ability
     if doctor.role == "nurse"
       can [:read, :create], Patient
       cannot :update, Patient
+      can [:read, :create], LabPatient
     end
     can :manage, :all if doctor.role == "doctor"
   end

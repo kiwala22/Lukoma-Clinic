@@ -20,12 +20,12 @@ $(document).ready(() => {
       },
       tooltip : {
          trigger: 'axis',
-         axisPointer : {            
-            type : 'line'        
+         axisPointer : {
+            type : 'line'
          }
       },
       legend: {
-          data:['Patients Count']
+          data:['Patients Count', 'Lab Patients Count']
       },
       grid: {
           left: '5%',
@@ -49,6 +49,11 @@ $(document).ready(() => {
               name:'Patients Count',
               type:'line',
               data: gon.patients
+          },
+          {
+              name:'Lab Patients Count',
+              type:'line',
+              data: gon.lab_patients
           }
       ]
   };

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lukoma - Clinic | Report Download %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+   <!-- =============== APP STYLES ===============-->
+   <%= stylesheet_link_tag 'application', media: 'all', id: "maincss" %>
+
+   <%= yield :vendor_css_area %>
+
+   <%= csrf_meta_tags %>
+   <%= csp_meta_tag %>
+  </head>
+
+  <body>
+     <div class="wrapper">
+        <!-- top navbar-->
+        <header class="topnavbar-wrapper">
+           <%= render partial: "layouts/patient_partials/labtopnavbar" %>
+        </header>
+        <!-- Page content-->
+        <div class="content-wrapper">
+            <%= yield %>
+        </div>
+     </div>
+
+     <!-- =============== APP SCRIPTS ===============-->
+     <%= javascript_packs_with_chunks_tag 'application' %>
+
+     <%= yield :vendor_js_area %>
+
+     <%= yield :body_area %>
+
+  </body>
+
+</html>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_03_110621) do
+ActiveRecord::Schema.define(version: 2020_12_08_100129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,32 @@ ActiveRecord::Schema.define(version: 2020_12_03_110621) do
     t.index ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true
   end
 
+  create_table "lab_patients", force: :cascade do |t|
+    t.string "lab_patient_id"
+    t.string "first_name"
+    t.string "middle_name"
+    t.string "last_name"
+    t.decimal "height"
+    t.decimal "weight"
+    t.integer "age"
+    t.string "sex"
+    t.string "address"
+    t.string "doctor"
+    t.string "phone_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "lab_results", force: :cascade do |t|
+    t.string "lab_patient_number"
+    t.string "result"
+    t.bigint "lab_patient_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "diagnosis"
+    t.index ["lab_patient_id"], name: "index_lab_results_on_lab_patient_id"
+  end
+
   create_table "patients", force: :cascade do |t|
     t.string "patient_id"
     t.string "first_name"
@@ -122,6 +148,7 @@ ActiveRecord::Schema.define(version: 2020_12_03_110621) do
   add_foreign_key "billings", "patients"
   add_foreign_key "conclusions", "patients"
   add_foreign_key "diagnoses", "patients"
+  add_foreign_key "lab_results", "lab_patients"
   add_foreign_key "prescriptions", "patients"
   add_foreign_key "results", "patients"
 end

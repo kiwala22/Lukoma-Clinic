@@ -1,0 +1,40 @@
+<div class="content-heading">
+   <div>New Lab Patient Results
+      <small>Patient Information</small>
+   </div>
+</div>
+
+<div class="row">
+  <div class="block-center mt-xl wd-xxl col-sm-8 col-centered">
+    <div class="card card-dark card-flat">
+      <div class="card-body">
+      <%= form_with(model: @lab_result, local: true, :html => {:"data-parsley-validate" => '', class: "mb-lg"}) do |form| %>
+        <div class="form-group">
+          <%= form.label :lab_patient_number, "Lab Patient Number", class: "text-muted" %>
+          <%= form.select :lab_patient_number, options_for_select(LabPatient.pluck(:lab_patient_id)), {:prompt => "Choose Lab Patient Number...."}, class: "form-control", required: true %>
+          <span class="invalid-feedback"><%= show_errors(@lab_result, :lab_patient_number) %></span>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :diagnosis, "Diagnosis", class: "text-muted" %>
+          <%= form.text_area :diagnosis, class: "form-control", rows: 3, required: true %>
+          <span class="invalid-feedback"><%= show_errors(@lab_result, :diagnosis) %></span>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :result, "Lab Results", class: "text-muted" %>
+          <%= form.text_area :result, class: "form-control", rows: 3, required: true %>
+          <span class="invalid-feedback"><%= show_errors(@lab_result, :result) %></span>
+        </div>
+        <div class="form-group"></div>
+        <div class="clearfix">
+          <%= form.submit 'Submit', :class=>'btn btn-info mb-2' %>
+        </div>
+      <% end %>
+      <!-- <div class="clearfix">
+        <button id="js-add-results-row" class="btn btn-primary fileinput-button float-right"><i class="fa fa-fw fa-plus"></i><%= "Add Field" %></button>
+      </div> -->
+      </div>
+    </div>
+  </div>
+</div>
