@@ -4,19 +4,9 @@
       <div class="card-body">
       <%= form_with(model: patient, local: true, :html => {:"data-parsley-validate" => '', class: "mb-lg"}) do |form| %>
         <div class="form-group">
-          <%= form.label :first_name, "First Name", class: "text-muted" %>
-          <%= form.text_field :first_name, class: "form-control" %>
-          <span class="invalid-feedback"><%= show_errors(patient, :first_name) %></span>
-        </div>
-        <div class="form-group">
-          <%= form.label :middle_name, "Middle Name", class: "text-muted" %>
-          <%= form.text_field :middle_name, class: "form-control" %>
-          <span class="invalid-feedback"><%= show_errors(patient, :middle_name) %></span>
-        </div>
-        <div class="form-group">
-          <%= form.label :last_name, "Last Name", class: "text-muted" %>
-          <%= form.text_field :last_name, class: "form-control" %>
-          <span class="invalid-feedback"><%= show_errors(patient, :last_name) %></span>
+          <%= form.label :first_name, "Full Name", class: "text-muted" %>
+          <%= form.text_field :full_name, class: "form-control" %>
+          <span class="invalid-feedback"><%= show_errors(patient, :full_name) %></span>
         </div>
         <div class="form-group">
           <%= form.label :sex, "Sex", class: "text-muted" %>
@@ -29,28 +19,9 @@
           <span class="invalid-feedback"><%= show_errors(patient, :age) %></span>
         </div>
         <div class="form-group">
-          <%= form.label :address, "Address", class: "text-muted" %>
-          <%= form.text_area :address, class: "form-control", rows: 5 %>
-          <span class="invalid-feedback"><%= show_errors(patient, :address) %></span>
-        </div>
-        <div class="form-group">
-          <%= form.label :phone_number, "Phone Number", class: "text-muted" %>
-          <%= form.text_field :phone_number, class: "form-control" %>
-          <span class="invalid-feedback"><%= show_errors(patient, :phone_number) %></span>
-        </div>
-        <div class="form-group">
-          <%= form.label :height, "Height", class: "text-muted" %>
-          <%= form.text_field :height, class: "form-control" %>
-          <span class="invalid-feedback"><%= show_errors(patient, :height) %></span>
-        </div>
-        <div class="form-group">
-          <%= form.label :weight, "Weight", class: "text-muted" %>
-          <%= form.text_field :weight, class: "form-control" %>
-          <span class="invalid-feedback"><%= show_errors(patient, :weight) %></span>
-        </div>
-        <div class="form-group">
-          <%= form.label :patient_medical_history, "Medical History", class: "text-muted" %>
-          <%= form.text_area :patient_medical_history, class: "form-control", rows: 10 %>
+          <%= form.label :category, "Category", class: "text-muted" %>
+          <%= form.select :category, options_for_select(["Outward", "Laboratory"]), {prompt: "Select One"}, class: "form-control" %>
+          <span class="invalid-feedback"><%= show_errors(patient, :category) %></span>
         </div>
         <div class="form-group"></div>
         <div class="clearfix">

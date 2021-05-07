@@ -13,6 +13,8 @@ require("modernizr/modernizr.custom.js");
 import "./patients_analytics.js.erb";
 import './datepicker'
 
+require("./components/App");
+
 $(document).ready(function() {
     $("#birth_date").datetimepicker({
         format: "YYYY-MM-DD"

@@ -15,7 +15,7 @@ class PatientsController < ApplicationController
 
   def create
     @patient = Patient.new(patient_params.merge(
-      patient_id: "LUK-"+generate_patient_id(),
+      patient_id: generate_patient_id(),
       doctor: current_doctor.username
     ))
     if @patient.save
@@ -23,6 +23,15 @@ class PatientsController < ApplicationController
       redirect_to action: "index"
     else
       render action: "new"
+    end
+  end
+
+
+  def patients_data
+    @patients = Patient.all.select(:id, :full_name).order("created_at DESC")
+
+    respond_to do |format|
+      format.json { render json: @patients }
     end
   end
 
@@ -72,7 +81,7 @@ class PatientsController < ApplicationController
 
   def generate_patient_id
     begin
-        patient_id = rand(36**8).to_s(36).upcase
+        patient_id = "LUK-"+rand(36**8).to_s(36).upcase
     end while Patient.where(patient_id: patient_id).exists?
     return patient_id
   end
@@ -82,7 +91,7 @@ class PatientsController < ApplicationController
   end
 
   def patient_params
-    params.require(:patient).permit(:first_name, :middle_name, :last_name, :sex, :address, :patient_medical_history, :age, :height, :weight, :phone_number)
+    params.require(:patient).permit(:full_name, :sex, :age, :category)
   end
 
 end

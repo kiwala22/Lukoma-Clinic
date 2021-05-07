@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_08_100129) do
+ActiveRecord::Schema.define(version: 2021_05_07_133907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,33 +41,6 @@ ActiveRecord::Schema.define(version: 2020_12_08_100129) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "billings", force: :cascade do |t|
-    t.string "patient_number"
-    t.json "cost"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "patient_id", null: false
-    t.index ["patient_id"], name: "index_billings_on_patient_id"
-  end
-
-  create_table "conclusions", force: :cascade do |t|
-    t.string "patient_number"
-    t.json "conclusion"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "patient_id", null: false
-    t.index ["patient_id"], name: "index_conclusions_on_patient_id"
-  end
-
-  create_table "diagnoses", force: :cascade do |t|
-    t.string "patient_number"
-    t.json "diagnosis"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "patient_id", null: false
-    t.index ["patient_id"], name: "index_diagnoses_on_patient_id"
-  end
-
   create_table "doctors", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -83,72 +56,54 @@ ActiveRecord::Schema.define(version: 2020_12_08_100129) do
     t.index ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true
   end
 
-  create_table "lab_patients", force: :cascade do |t|
-    t.string "lab_patient_id"
-    t.string "first_name"
-    t.string "middle_name"
-    t.string "last_name"
-    t.decimal "height"
-    t.decimal "weight"
-    t.integer "age"
-    t.string "sex"
-    t.string "address"
-    t.string "doctor"
-    t.string "phone_number"
+  create_table "medical_reports", force: :cascade do |t|
+    t.string "report_number"
+    t.json "diagnosis"
+    t.json "result"
+    t.json "prescription"
+    t.text "conclusion"
+    t.string "patient_name"
+    t.string "doctor_name"
+    t.boolean "paid", default: false
+    t.bigint "patient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "lab_results", force: :cascade do |t|
-    t.string "lab_patient_number"
-    t.string "result"
-    t.bigint "lab_patient_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "diagnosis"
-    t.index ["lab_patient_id"], name: "index_lab_results_on_lab_patient_id"
+    t.decimal "amount_paid"
+    t.index ["patient_id"], name: "index_medical_reports_on_patient_id"
   end
 
   create_table "patients", force: :cascade do |t|
     t.string "patient_id"
-    t.string "first_name"
-    t.string "last_name"
+    t.string "full_name"
     t.string "sex"
-    t.string "address"
-    t.text "patient_medical_history"
+    t.integer "age"
+    t.string "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "doctor"
-    t.date "date_of_birth"
-    t.string "phone_number"
-    t.decimal "height"
-    t.decimal "weight"
-    t.string "middle_name"
-    t.integer "age"
   end
 
-  create_table "prescriptions", force: :cascade do |t|
-    t.string "patient_number"
-    t.json "prescription"
+  create_table "payments", force: :cascade do |t|
+    t.string "patient_name"
+    t.decimal "amount"
+    t.text "reason"
+    t.string "doctor_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "patient_id", null: false
-    t.index ["patient_id"], name: "index_prescriptions_on_patient_id"
+    t.bigint "medical_report_id", null: false
+    t.index ["medical_report_id"], name: "index_payments_on_medical_report_id"
   end
 
-  create_table "results", force: :cascade do |t|
-    t.string "patient_number"
-    t.json "results"
+  create_table "transactions", force: :cascade do |t|
+    t.decimal "amount"
+    t.string "category"
+    t.bigint "payment_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "patient_id", null: false
-    t.index ["patient_id"], name: "index_results_on_patient_id"
+    t.index ["payment_id"], name: "index_transactions_on_payment_id"
   end
 
-  add_foreign_key "billings", "patients"
-  add_foreign_key "conclusions", "patients"
-  add_foreign_key "diagnoses", "patients"
-  add_foreign_key "lab_results", "lab_patients"
-  add_foreign_key "prescriptions", "patients"
-  add_foreign_key "results", "patients"
+  add_foreign_key "medical_reports", "patients"
+  add_foreign_key "payments", "medical_reports"
+  add_foreign_key "transactions", "payments"
 end

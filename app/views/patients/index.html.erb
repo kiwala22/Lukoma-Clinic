@@ -21,9 +21,9 @@
                   </div>
                   <div class="col-md-6">
                      <div class="form-group form-row">
-                        <%= f.label :phone_number, "Phone Number", class:"col-md-3 col-form-label" %>
+                        <%= f.label :full_name, "Name", class:"col-md-3 col-form-label" %>
                         <div class="col-lg-8">
-                           <%= f.search_field :phone_number_eq, {include_blank: true, id: "phone_number", class: "form-control"} %>
+                           <%= f.search_field :full_name_eq, {include_blank: true, id: "full_name", class: "form-control"} %>
                         </div>
                      </div>
                   </div>
@@ -47,15 +47,9 @@
             <tr>
               <th>No#</th>
                <th>Patient ID#</th>
-               <th>First Name</th>
-               <th>Middle Name</th>
-               <th>Last Name</th>
+               <th>Full Name</th>
                <th>Sex</th>
                <th>Age</th>
-               <th>Height</th>
-               <th>Weight</th>
-               <th>Address</th>
-               <th>Phone Number</th>
                <th>Doctor</th>
             </tr>
          </thead>
@@ -64,15 +58,9 @@
             <tr class="gradeX">
               <td><%= (i + 1) %></td>
                <td><a href=<%=patient_path(id: patient.id)%>><%= patient.patient_id %></a></td>
-               <td><%= patient.first_name %></td>
-               <td><%= patient.middle_name %></td>
-               <td><%= patient.last_name %></td>
+               <td><%= patient.full_name %></td>
                <td><%= patient.sex %></td>
                <td><%= patient.age %></td>
-               <td><%= patient.height %></td>
-               <td><%= patient.weight %></td>
-               <td><%= patient.address %></td>
-               <td><%= patient.phone_number %></td>
                <td><%= patient.doctor.titleize %></td>
                <!-- <td>
                <#% if can? :update, patient %>
