@@ -11,11 +11,14 @@ const Payments = props => {
             <thead>
               <tr>
                 <th scope="col">No #</th>
+                <th scope="col">Payment Reference</th>
                 <th scope="col">Patient Name</th>
                 <th scope="col">Amount</th>
+                <th scope="col">Payment Method</th>
                 <th scope="col">Reason</th>
                 <th scope="col">Doctor Name</th>
                 <th scope="col">Create Time</th>
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>{props.children}</tbody>

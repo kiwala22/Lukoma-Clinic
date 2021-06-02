@@ -38,19 +38,24 @@ class PatientsController < ApplicationController
   def show
     @patient = Patient.find(params[:id])
 
+    filename = "Report No. #{@patient.patient_id}"
+
     respond_to do |format|
       format.html
       format.pdf do
-          render pdf: "Report No. #{@patient.patient_id}",
+          render pdf: filename,
+          disposition: 'attachment',
           page_size: 'A4',
           template: "patients/show.html.erb",
           layout: "pdf.html",
           orientation: "Portrait",
+          save_to_file: Rails.root.join('public', filename), 
+          save_only: true,
           lowquality: true,
           zoom: 1,
           dpi: 90
       end
-  end
+    end
   end
 
   # def edit

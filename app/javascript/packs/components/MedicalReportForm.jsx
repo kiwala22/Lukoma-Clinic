@@ -6,11 +6,14 @@ import { Modal, Button, Alert } from 'react-bootstrap';
 import { AlertList, AlertContainer } from "react-bs-notifier";
 import setAxiosHeaders from './AxiosHeaders';
 import Select from 'react-select';
+import ErrorMessage from './ErrorMessage';
 
 const MedicalReportForm = (props) => {
 
   const [show, setShow] = useState(false);
   const [patients, setPatients] =  useState([]);
+  const [successDisplay, setSuccessDisplay] = useState(false);
+  const [errorDisplay, setErrorDisplay] = useState(false);
   const [selectedValue, setSelectedValue] = useState();
   const [diagnosis, setDiagnosis] = useState([""]);
   const [result, setResult] = useState([""]);
@@ -19,39 +22,72 @@ const MedicalReportForm = (props) => {
 
 
   const createDiagnosisUI = () => {
-    const trs = diagnosis.map((tr, i) =>
-      <div key={i}>
-         <br/>
-         <input type="text" name="diagnosis" value={tr} className="form-control" placeholder="Diagnosis" onChange={() => diagnosisChange(i)}/><br/>
-         <input type='button' value='Remove Field' className="btn btn-outline-danger btn-block btn-sm" onClick={() => removeDiagnosisClick(i)}/>
-      </div>
-    );
+    const trs = diagnosis.map((tr, i) => {
+      if (i == 0) {
+       return (
+        <div key={i}>
+          <textarea type="text" name="diagnosis" value={tr} required className="form-control" placeholder="Diagnosis" onChange={() => diagnosisChange(i)}/><br/>
+          <input type='button' value='Remove Field' className="btn btn-outline-danger btn-block btn-sm" onClick={() => removeDiagnosisClick(i)}/>
+        </div>
+       )
+      }else {
+        return (
+          <div key={i}>
+            <br />
+            <textarea type="text" name="diagnosis" value={tr} className="form-control" placeholder="Diagnosis" onChange={() => diagnosisChange(i)}/><br/>
+            <input type='button' value='Remove Field' className="btn btn-outline-danger btn-block btn-sm" onClick={() => removeDiagnosisClick(i)}/>
+          </div>
+        )
+      }
+    });
     return (
       trs
     )
   }
 
   const createResultUI = () => {
-    const trs = result.map((tr, i) =>
-      <div key={i}>
-         <br/>
-         <input type="text" name="result" value={tr} className="form-control" placeholder="Result" onChange={() => resultChange(i)}/><br/>
-         <input type='button' value='Remove Field' className="btn btn-outline-danger btn-block btn-sm" onClick={() => removeResultClick(i)}/>
-      </div>
-    );
+    const trs = result.map((tr, i) => {
+      if (i == 0) {
+        return (
+          <div key={i}>
+            <textarea type="text" name="result" value={tr} className="form-control" placeholder="Result" onChange={() => resultChange(i)}/><br/>
+            <input type='button' value='Remove Field' className="btn btn-outline-danger btn-block btn-sm" onClick={() => removeResultClick(i)}/>
+          </div>
+        )
+      } else {
+        return (
+          <div key={i}>
+            <br/>
+            <textarea type="text" name="result" value={tr} className="form-control" placeholder="Result" onChange={() => resultChange(i)}/><br/>
+            <input type='button' value='Remove Field' className="btn btn-outline-danger btn-block btn-sm" onClick={() => removeResultClick(i)}/>
+          </div>
+        )
+      }
+    });
     return (
       trs
     )
   }
 
   const createPrescriptionUI = () => {
-    const trs = prescription.map((tr, i) =>
-      <div key={i}>
-         <br/>
-         <input type="text" name="prescription" value={tr} className="form-control" placeholder="Prescription" onChange={() => prescriptionChange(i)}/><br/>
-         <input type='button' value='Remove Field' className="btn btn-outline-danger btn-block btn-sm" onClick={() => removePrescriptionClick(i)}/>
-      </div>
-    );
+    const trs = prescription.map((tr, i) => {
+      if (i == 0) {
+        return (
+          <div key={i}>
+            <textarea type="text" name="prescription" value={tr} className="form-control" placeholder="Prescription" onChange={() => prescriptionChange(i)}/><br/>
+            <input type='button' value='Remove Field' className="btn btn-outline-danger btn-block btn-sm" onClick={() => removePrescriptionClick(i)}/>
+          </div>
+        )
+      } else {
+        return (
+          <div key={i}>
+            <br/>
+            <textarea type="text" name="prescription" value={tr} className="form-control" placeholder="Prescription" onChange={() => prescriptionChange(i)}/><br/>
+            <input type='button' value='Remove Field' className="btn btn-outline-danger btn-block btn-sm" onClick={() => removePrescriptionClick(i)}/>
+          </div>
+        )
+      }
+    });
     return (
       trs
     )
@@ -133,24 +169,38 @@ const MedicalReportForm = (props) => {
     e.preventDefault();
     setAxiosHeaders();
     axios.post("/medical_reports", {
-      payment: {
-        patient_id: selectedValue
+      medical_report: {
+        patient_id: selectedValue,
+        conclusion: conclusion.current.value,
+        diagnosis: diagnosis,
+        result: result,
+        prescription: prescription
       }
     })
       .then(response => {
         const medicalReport = response.data;
         props.createMedicalReport(medicalReport);
+        setSuccessDisplay(true);
+        setTimeout(() => {clearErrors()}, 6000);
       })
       .catch(error => {
-        console.log(error);
+        setErrorDisplay(true);
+        setTimeout(() => {clearErrors()}, 6000);
       })
 
     e.target.reset();
     handleClose();
   }
 
+  const clearErrors = () => {
+    setErrorDisplay(false);
+    setSuccessDisplay(false);
+  }
+
   return (
     <>
+      {successDisplay && <ErrorMessage errorMessage={"Success"} />}
+      {errorDisplay && <ErrorMessage errorMessage={"Error"} />}
       <div className="content-heading">
         <div>Medical Reports</div>
         <div className="ml-auto">
@@ -171,7 +221,7 @@ const MedicalReportForm = (props) => {
        <Modal.Body>
        <form onSubmit={handleSubmit} className="my-3">
          <div className="form-group">
-            <label className="text-muted"><strong>Patient</strong></label>
+            <label className="text-muted"><strong>Patient <span style={{color: "red"}}>*</span></strong></label>
             <Select
               placeholder="Select Patient..."
               value={patients.find(obj => obj.value === selectedValue)} // set selected value
@@ -180,21 +230,21 @@ const MedicalReportForm = (props) => {
              />
          </div>
          <div className="form-group">
-            <label className="text-muted"><strong>Diagnosis</strong></label>
+            <label className="text-muted"><strong>Diagnosis <span style={{color: "red"}}>*</span></strong></label>
               {createDiagnosisUI()}
-             <br/>
+              <br/>
              <input type='button' value='Add Diagnosis Field' className="btn btn-outline-success btn-block btn-sm" onClick={() => addDiagnosisClick()} />
          </div>
          <div className="form-group">
             <label className="text-muted"><strong>Result</strong></label>
               {createResultUI()}
-             <br/>
+              <br/>
              <input type='button' value='Add Result Field' className="btn btn-outline-success btn-block btn-sm" onClick={() => addResultClick()} />
          </div>
          <div className="form-group">
             <label className="text-muted"><strong>Prescription</strong></label>
               {createPrescriptionUI()}
-             <br/>
+              <br/>
              <input type='button' value='Add Prescription Field' className="btn btn-outline-success btn-block btn-sm" onClick={() => addPrescriptionClick()} />
          </div>
          <div className="form-group">

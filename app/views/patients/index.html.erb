@@ -57,16 +57,11 @@
          <% @patients.each_with_index do |patient, i| %>
             <tr class="gradeX">
               <td><%= (i + 1) %></td>
-               <td><a href=<%=patient_path(id: patient.id)%>><%= patient.patient_id %></a></td>
+               <td><%= patient.patient_id %></td>
                <td><%= patient.full_name %></td>
                <td><%= patient.sex %></td>
                <td><%= patient.age %></td>
                <td><%= patient.doctor.titleize %></td>
-               <!-- <td>
-               <#% if can? :update, patient %>
-                  <#%= link_to 'Update', edit_patient_path(patient) %>
-               <#% end %>
-               </td> -->
             </tr>
          <% end %>
          </tbody>

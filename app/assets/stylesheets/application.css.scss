@@ -29,8 +29,18 @@
  *= require angle/bootstrap
  *= require angle/app
  *= require datepicker
+ *= require morris
+ *= require print_js
  *
  */
+
+//  .wrapper {
+//    background-color: white !important;
+//  }
+
+//  .container {
+//   background-color: white !important;
+//  }
 
  .navbar-header > a {
     color: #ffff
@@ -60,4 +70,18 @@
 
 .pdf-td {
   border: 1px solid black !important;
+}
+
+.conclusion-display {
+  margin: -20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  margin: -15px;
+  margin-bottom: 20px;
+  padding: 15px;
+  font-weight: normal;
 }

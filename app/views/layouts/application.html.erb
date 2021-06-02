@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
    <!-- =============== APP STYLES ===============-->
    <%= stylesheet_link_tag 'application', media: 'all', id: "maincss" %>
-
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
    <%= yield :vendor_css_area %>
 
    <%= csrf_meta_tags %>
@@ -42,7 +43,6 @@
 
      <!-- =============== APP SCRIPTS ===============-->
      <%= javascript_packs_with_chunks_tag 'application' %>
-
      <%= yield :vendor_js_area %>
 
      <%= yield :body_area %>

@@ -1,0 +1,108 @@
+// import * as echarts from 'echarts';
+
+// $(document).ready(() => {
+//   try{var myChart = echarts.init(document.getElementById('patients_graph'), 'walden');}catch(e){};
+//   var itemStyle = {
+//       normal: {
+//       },
+//       emphasis: {
+//           barBorderWidth: 1,
+//           shadowBlur: 10,
+//           shadowOffsetX: 0,
+//           shadowOffsetY: 0,
+//           shadowColor: 'rgba(0,0,0,0.5)'
+//       }
+//   };
+//   var option = {
+//       title: {
+//          text: 'Patients',
+//          subtext: 'Patients Counts'
+//       },
+//       tooltip : {
+//          trigger: 'axis',
+//          axisPointer : {
+//             type : 'line'
+//          }
+//       },
+//       legend: {
+//           data:['Patients Count', 'Lab Patients Count']
+//       },
+//       grid: {
+//           left: '5%',
+//           right: '5%',
+//           bottom: '5%',
+//           containLabel: true
+//       },
+//       xAxis : [
+//           {
+//               type : 'category',
+//               data : gon.labels
+//           }
+//       ],
+//       yAxis : [
+//           {
+//               type : 'value'
+//           }
+//       ],
+//       series : [
+//           {
+//               name:'Patients Count',
+//               type:'line',
+//               data: gon.patients
+//           },
+//           {
+//               name:'Lab Patients Count',
+//               type:'line',
+//               data: gon.lab_patients
+//           }
+//       ]
+//   };
+//   try{myChart.setOption(option);}catch(e){};
+// });
+
+// import 'raphael';
+// import 'morris';
+
+// $(document).ready(() => {
+
+//     // console.log("I am working as morris js");
+// });
+
+const graphDisplay = () => {
+    if (typeof Morris === 'undefined') return;
+
+    const patientsArr = gon.patients//[12, 1, 32, 90, 45, 56, 70, 85, 27, 34, 9, 19, 32, 15, 67]
+    const datesArray = gon.labels
+
+    const chartData = []
+
+    if (typeof patientsArr === 'undefined') return;
+
+    patientsArr.map((x,i) => {
+        chartData.push({"y": x, "v": datesArray[i]});
+    });
+
+    if (!document.querySelector('#morris-line'))
+        return;
+
+    // Line Chart
+    // -----------------------------------
+
+    new Morris.Line({
+        element: 'morris-line',
+        data: chartData,
+        xkey: 'v',
+        ykeys: 'y',
+        labels: ["Patients Count"],
+        lineColors: ["#31C0BE"],
+        resize: true,
+        smooth: false,
+        fillOpacity: 0.6,
+        hideHover: 'auto',
+        behaveLikeLine: true,
+        pointFillColors:['#ffffff'],
+        pointStrokeColors: ['black'],
+    });
+}
+
+export default graphDisplay

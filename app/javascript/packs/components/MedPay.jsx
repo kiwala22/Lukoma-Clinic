@@ -8,17 +8,20 @@ import setAxiosHeaders from './AxiosHeaders';
 import Select from 'react-select';
 import ErrorMessage from './ErrorMessage';
 
-const PaymentForm = (props) => {
+const MedPay = (props) => {
 
   const [show, setShow] = useState(false);
-  const [successDisplay, setSuccessDisplay] = useState(false);
-  const [errorDisplay, setErrorDisplay] = useState(false);
   const [reports, setReports] =  useState([]);
   const [selectedValue, setSelectedValue] = useState();
+  const [successDisplay, setSuccessDisplay] = useState(false);
+  const [errorDisplay, setErrorDisplay] = useState(false);
   const [selectedReason, setSelectedReason] = useState();
   const [selectedMethod, setSelectedMethod] = useState();
-  const [methods, setMethods] = useState([{value: "Mobile Money", label: "Mobile Money"},{value: "Cash", label: "Cash"}]);
   const [reasons, setReasons] = useState([{value: "Lab Tests", label: "Lab Tests"}, {value: "Medication", label: "Medication"}, {value: "Consultation", label: "Consultation"}]);
+  const [methods, setMethods] = useState([{value: "Mobile Money", label: "Mobile Money"},{value: "Cash", label: "Cash"}]);
+
+  const options = props.medicalReport;
+
 
   const amount = React.createRef();
   // const reason = React.createRef();
@@ -26,16 +29,21 @@ const PaymentForm = (props) => {
   const handleClose = () => setShow(false);
 
   const handleShow = () => {
-    axios.get("/get_unpaid_medical_reports")
-      .then(response => {
-        const reps = response.data;
-        const newArr = [];
-        reps.map(option => {
-          newArr.push({value: option.id, label: option.patient_name})
-        })
-        setReports(newArr);
-      })
+    // axios.get("/get_medical_reports")
+    //   .then(response => {
+    //     const reps = response.data;
+    //     const newArr = [];
+    //     reps.map(option => {
+    //       newArr.push({value: option.id, label: option.patient_name})
+    //     })
+    //     setReports(newArr);
+    //   })
 
+    const newArr = [];
+    options.map(option => {
+      newArr.push({value: option.id, label: option.patient_name})
+    })
+    setReports(newArr);
     setShow(true);
   };
 
@@ -80,23 +88,13 @@ const PaymentForm = (props) => {
     handleClose();
   }
 
-  const clearErrors = () => {
-    setErrorDisplay(false);
-    setSuccessDisplay(false);
-  }
-
   return (
     <>
       {successDisplay && <ErrorMessage errorMessage={"Success"} />}
       {errorDisplay && <ErrorMessage errorMessage={"Error"} />}
-      <div className="content-heading">
-        <div>Payments</div>
-        <div className="ml-auto">
-          <Button variant="outline-success" onClick={handleShow}>
-            Payment
-          </Button>
-        </div>
-      </div>
+      <Button variant="outline-success" onClick={handleShow}>
+        Pay
+      </Button>
       <Modal
         show={show}
         onHide={handleClose}
@@ -157,4 +155,4 @@ const PaymentForm = (props) => {
   );
 }
 
-export default PaymentForm;
+export default MedPay;

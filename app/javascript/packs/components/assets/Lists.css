@@ -1,0 +1,8 @@
+.List {
+  list-style-type: none;
+}
+
+.CustomSpinner {
+  width: 3rem;
+  height: 3rem;
+}

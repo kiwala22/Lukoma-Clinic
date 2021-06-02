@@ -9,9 +9,15 @@ require("modernizr/modernizr.custom.js");
 // //require("turbolinks").start()
 // require("@rails/activestorage").start()
 // require("channels")
-//Added new info
-import "./patients_analytics.js.erb";
+//
+
+
 import './datepicker'
+
+// import './raphael'//rap def
+import 'raphael'
+// require('raphael')
+import './morris'
 
 require("./components/App");
 
@@ -22,11 +28,17 @@ $(document).ready(function() {
 });
 
 //--- Dynamic Fields For all forms ---//
-import "./dynamic_fields.js";
+// import "./dynamic_fields.js";
 
 
 //--- Bootstrap
 import 'bootstrap';
 
+//--- PrintJS
+import print from 'print-js';
+
 import appInit from './angle/app.init.js';
 document.addEventListener('DOMContentLoaded', appInit);
+
+import graphDisplay from './graph.js.erb';
+document.addEventListener('DOMContentLoaded', graphDisplay);
