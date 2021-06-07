@@ -8,7 +8,7 @@ set :repo_url, "git@bitbucket.org:kiwala22/lukoma-clinic.git"
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/var/www/lukoma-clinic"
+set :deploy_to, "/var/www/html/lukoma-clinic"
 
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 
